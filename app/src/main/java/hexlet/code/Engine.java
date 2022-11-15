@@ -16,20 +16,20 @@ public class Engine {
     }
 
     // in case giving answer is wrong
-    public static void endGame(String wrongAnswer, String correctAnswer, String name) {
-        System.out.println("'" + wrongAnswer + "'" + " is wrong answer ;(. Correct answer was '" + correctAnswer + "'.");
+    public static void endGame(String wrongAns, String correctAnswer, String name) {
+        System.out.println("'" + wrongAns + "'" + " is wrong answer ;(. Correct answer was '" + correctAnswer + "'.");
         System.out.println("Let's try again, " + name + "!");
     }
 
     // in case all 3 giving answers were correct
     public static void congrats(int counter, int maxAttempt, String name) {
-        if (counter == maxAttempt){
+        if (counter == maxAttempt) {
             System.out.println("Congratulations, " + name + "!");
         }
     }
 
     // getting random int
-    public static int getRandomNum(int min, int max){
+    public static int getRandomNum(int min, int max) {
         int diff = max - min;
         Random rand = new Random();
         int randomNum = rand.nextInt(diff + 1);
