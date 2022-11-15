@@ -6,18 +6,18 @@ import hexlet.code.Engine;
 import java.util.Scanner;
 
 public class Prime {
-    private static final String nameInput = Cli.greet();
-    static final int maxAttempt = 3;
-    static final int min = 0;
-    static final int max = 100;
+    private static final String NAME_INPUT = Cli.greet();
+    static final int MAX_ATTEMPT = 3;
+    static final int MIN = 0;
+    static final int MAX = 100;
 
     public static void game() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
 
         int counter = 0;
-        while (counter < maxAttempt) {
-            int num = Engine.getRandomNum(min, max);
+        while (counter < MAX_ATTEMPT) {
+            int num = Engine.getRandomNum(MIN, MAX);
             String result = getResult(num);
             Engine.question(num + "");
             String input = sc.nextLine();
@@ -26,11 +26,11 @@ public class Prime {
                 Engine.correct();
                 counter++;
             } else {
-                Engine.endGame(input, result, nameInput);
+                Engine.endGame(input, result, NAME_INPUT);
                 return;
             }
         }
-        Engine.congrats(counter, maxAttempt, nameInput);
+        Engine.congrats(counter, MAX_ATTEMPT, NAME_INPUT);
         sc.close();
     }
 

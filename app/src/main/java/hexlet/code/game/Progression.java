@@ -7,15 +7,15 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Progression {
-    private static final String nameInput = Cli.greet();
-    static final int maxAttempt = 3;
+    private static final String NAME_INPUT = Cli.greet();
+    static final int MAX_ATTEMPT = 3;
 
     public static void game() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What number is missing in the progression?");
 
         int counter = 0;
-        while (counter < maxAttempt) {
+        while (counter < MAX_ATTEMPT) {
             String[] randomProgression = getProgression();
             int index = getIndex(randomProgression);
             String result = getResult(randomProgression, index);
@@ -27,11 +27,11 @@ public class Progression {
                 Engine.correct();
                 counter++;
             } else {
-                Engine.endGame(input, result, nameInput);
+                Engine.endGame(input, result, NAME_INPUT);
                 return;
             }
         }
-        Engine.congrats(counter, maxAttempt, nameInput);
+        Engine.congrats(counter, MAX_ATTEMPT, NAME_INPUT);
         sc.close();
     }
 
@@ -68,16 +68,16 @@ public class Progression {
         return progression[index];
     }
 
-    public static String getProgressionWithVoid(String[] progression, int index){
+    public static String getProgressionWithVoid(String[] progression, int index) {
         // replacing chosen number with ".."
         progression[index] = "..";
 
         // converting to String and getting rid of commas
-        String arrayWithCommas = Arrays.toString(progression);
+        String unedited = Arrays.toString(progression);
         String array = "";
-        for (int i = 0; i < arrayWithCommas.length(); i++) {
-            if (arrayWithCommas.charAt(i) != ',' && arrayWithCommas.charAt(i) != '[' && arrayWithCommas.charAt(i) != ']') {
-                array += arrayWithCommas.charAt(i);
+        for (int i = 0; i < unedited.length(); i++) {
+            if (unedited.charAt(i) != ',' && unedited.charAt(i) != '[' && unedited.charAt(i) != ']') {
+                array += unedited.charAt(i);
             } else {
                 array += "";
             }
