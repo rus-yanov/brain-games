@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.game.*;
+
 import java.util.Scanner;
 
 public class App {
@@ -15,5 +17,17 @@ public class App {
         Scanner sc = new Scanner(System.in);
         System.out.print("Your choice: ");
         int input = sc.nextInt();
+
+        switch (input) {
+            case 0 -> System.out.println("Exit");
+            case 1 -> Cli.greet();
+            case 2 -> Even.game();
+            case 3 -> Calc.game();
+            case 4 -> GCD.game();
+            case 5 -> Progression.game();
+            case 6 -> Prime.game();
+            default -> System.out.println("Something wrong");
+        }
+        sc.close();
     }
 }
