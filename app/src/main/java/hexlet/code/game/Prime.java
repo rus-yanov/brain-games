@@ -7,18 +7,19 @@ import java.util.Scanner;
 
 public class Prime {
     private static final String NAME_INPUT = Cli.greet();
-    static final int MAX_ATTEMPT = 3;
-    static final int MIN = 0;
-    static final int MAX = 100;
+    private static final int MIN = 0;
+    private static final int MAX = 100;
+    private static final String DESCRIPTION =
+            "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
     public static void game() {
+        Engine.printDescription(DESCRIPTION);
         Scanner sc = new Scanner(System.in);
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-
+        int maxAttempt = 3;
         int counter = 0;
-        while (counter < MAX_ATTEMPT) {
-            int num = Engine.getRandomNum(MIN, MAX);
-            String result = getResult(num);
+        while (counter < maxAttempt) {
+            int num = Engine.makeRandomNum(MIN, MAX);
+            String result = isPrime(num) ? "yes" : "no";
             Engine.question(num + "");
             String input = sc.nextLine();
 
@@ -30,19 +31,19 @@ public class Prime {
                 return;
             }
         }
-        Engine.congrats(counter, MAX_ATTEMPT, NAME_INPUT);
+        Engine.congrats(counter, maxAttempt, NAME_INPUT);
         sc.close();
     }
 
-    public static String getResult(int num) {
+    public static boolean isPrime(int num) {
         if (num <= 1) {
-            return "no";
+            return false;
         }
         for (int i = 2; i < num; i++) {
             if (num % i == 0) {
-                return "no";
+                return false;
             }
         }
-        return "yes";
+        return true;
     }
 }

@@ -7,19 +7,20 @@ import java.util.Scanner;
 
 public class GCD {
     private static final String NAME_INPUT = Cli.greet();
-    static final int MAX_ATTEMPT = 3;
-    static final int MIN = 0;
-    static final int MAX = 100;
+    private static final int MIN = 0;
+    private static final int MAX = 100;
+    private static final String DESCRIPTION =
+            "Find the greatest common divisor of given numbers.";
 
     public static void game() {
+        Engine.printDescription(DESCRIPTION);
         Scanner sc = new Scanner(System.in);
-        System.out.println("Find the greatest common divisor of given numbers.");
-
+        int maxAttempt = 3;
         int counter = 0;
-        while (counter < MAX_ATTEMPT) {
-            int num1 = Engine.getRandomNum(MIN, MAX);
-            int num2 = Engine.getRandomNum(MIN, MAX);
-            String result = Integer.toString(getResult(num1, num2));
+        while (counter < maxAttempt) {
+            int num1 = Engine.makeRandomNum(MIN, MAX);
+            int num2 = Engine.makeRandomNum(MIN, MAX);
+            String result = Integer.toString(gcd(num1, num2));
             Engine.question(num1 + " " + num2);
             String input = sc.nextLine();
 
@@ -31,12 +32,12 @@ public class GCD {
                 return;
             }
         }
-        Engine.congrats(counter, MAX_ATTEMPT, NAME_INPUT);
+        Engine.congrats(counter, maxAttempt, NAME_INPUT);
         sc.close();
     }
 
     // implementing Euclid's algorithm to get GCD
-    public static int getResult(int n1, int n2) {
-        return n2 == 0 ? n1 : getResult(n2, n1 % n2);
+    public static int gcd(int n1, int n2) {
+        return n2 == 0 ? n1 : gcd(n2, n1 % n2);
     }
 }

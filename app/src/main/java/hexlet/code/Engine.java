@@ -4,6 +4,11 @@ import java.util.Random;
 
 public class Engine {
 
+    // printing description
+    public static void printDescription(String description) {
+        System.out.println(description);
+    }
+
     // asking question and giving answer String
     public static void question(String task) {
         System.out.println("Question: " + task);
@@ -29,7 +34,7 @@ public class Engine {
     }
 
     // getting random int
-    public static int getRandomNum(int min, int max) {
+    public static int makeRandomNum(int min, int max) {
         int diff = max - min;
         Random rand = new Random();
         int randomNum = rand.nextInt(diff + 1);

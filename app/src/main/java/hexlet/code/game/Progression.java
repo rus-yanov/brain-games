@@ -8,18 +8,22 @@ import java.util.Scanner;
 
 public class Progression {
     private static final String NAME_INPUT = Cli.greet();
-    static final int MAX_ATTEMPT = 3;
+    private static final int LENGTH = Engine.makeRandomNum(8, 12);
+    private static final int INIT = Engine.makeRandomNum(0, 100);
+    private static final int STEP = Engine.makeRandomNum(1, 10);
+    private static final String DESCRIPTION =
+            "What number is missing in the progression?";
 
     public static void game() {
+        Engine.printDescription(DESCRIPTION);
         Scanner sc = new Scanner(System.in);
-        System.out.println("What number is missing in the progression?");
-
+        int maxAttempt = 3;
         int counter = 0;
-        while (counter < MAX_ATTEMPT) {
-            String[] randomProgression = getProgression();
-            int index = getIndex(randomProgression);
-            String result = getResult(randomProgression, index);
-            String progressionWithVoid = getProgressionWithVoid(randomProgression, index);
+        while (counter < maxAttempt) {
+            String[] randomProgression = makeProgression(INIT, STEP, LENGTH);
+            int index = makeIndex(randomProgression);
+            String result = makeResult(randomProgression, index);
+            String progressionWithVoid = makeProgressionWithVoid(randomProgression, index);
             Engine.question(progressionWithVoid);
             String input = sc.nextLine();
 
@@ -31,20 +35,17 @@ public class Progression {
                 return;
             }
         }
-        Engine.congrats(counter, MAX_ATTEMPT, NAME_INPUT);
+        Engine.congrats(counter, maxAttempt, NAME_INPUT);
         sc.close();
     }
 
-    public static String[] getProgression() {
-        // implementing progression consisting of ints
-        int lengthOfProgression = Engine.getRandomNum(8, 12);
-        int initNum = Engine.getRandomNum(0, 100);
-        int voidBtwNums = Engine.getRandomNum(1, 10);
-        int lastNumInRow = lengthOfProgression * voidBtwNums + initNum;
-        int[] intArray = new int[lengthOfProgression];
+    public static String[] makeProgression(int init, int step, int length) {
+        // implementing progression
+        int lastNumInRow = length * step + init;
+        int[] intArray = new int[length];
 
         int j = 0;
-        for (int i = initNum; i < lastNumInRow; i += voidBtwNums) {
+        for (int i = init; i < lastNumInRow; i += step) {
             intArray[j] = i;
             j++;
         }
@@ -58,17 +59,17 @@ public class Progression {
         return strArray;
     }
 
-    public static int getIndex(String[] progression) {
+    public static int makeIndex(String[] progression) {
         // getting index of random number
-        return Engine.getRandomNum(0, progression.length - 1);
+        return Engine.makeRandomNum(0, progression.length - 1);
     }
 
-    public static String getResult(String[] progression, int index) {
+    public static String makeResult(String[] progression, int index) {
         // returning chosen random number for the right answer
         return progression[index];
     }
 
-    public static String getProgressionWithVoid(String[] progression, int index) {
+    public static String makeProgressionWithVoid(String[] progression, int index) {
         // replacing chosen number with ".."
         progression[index] = "..";
 
