@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class Calc {
     private static final String NAME_INPUT = Cli.greet();
-    static final int MIN = 0;
-    static final int MAX = 100;
-    static final int MULTIPLY_INDEX = 1;
-    static final int SUM_INDEX = 2;
-    static final int DIFF_INDEX = 3;
+    private static final int MIN = 0;
+    private static final int MAX = 100;
+    private static final int MULTIPLY_INDEX = 1;
+    private static final int SUM_INDEX = 2;
+    private static final int DIFF_INDEX = 3;
     private static final String DESCRIPTION =
             "Whats is the result of the expression?";
 
@@ -23,9 +23,8 @@ public class Calc {
         while (counter < maxAttempt) {
             int num1 = Engine.makeRandomNum(MIN, MAX);
             int num2 = Engine.makeRandomNum(MIN, MAX);
-            String operand = getArithmeticOperand();
-            assert operand != null;
-            String result = getResult(num1, num2, operand);
+            String operand = returnArithmeticOperand();
+            String result = returnResult(num1, num2, operand);
             Engine.question(num1 + " " + operand + " " + num2);
             String input = sc.nextLine();
 
@@ -41,7 +40,7 @@ public class Calc {
         sc.close();
     }
 
-    public static String getArithmeticOperand() {
+    public static String returnArithmeticOperand() {
         int index = Engine.makeRandomNum(MULTIPLY_INDEX, DIFF_INDEX);
         return switch (index) {
             case MULTIPLY_INDEX -> "*";
@@ -51,7 +50,7 @@ public class Calc {
         };
     }
 
-    public static String getResult(int num1, int num2, String operand) {
+    public static String returnResult(int num1, int num2, String operand) {
         return switch (operand) {
             case "*" -> Integer.toString(num1 * num2);
             case "+" -> Integer.toString(num1 + num2);

@@ -22,7 +22,7 @@ public class Progression {
         while (counter < maxAttempt) {
             String[] randomProgression = makeProgression(INIT, STEP, LENGTH);
             int index = makeIndex(randomProgression);
-            String result = makeResult(randomProgression, index);
+            String result = returnResult(randomProgression, index);
             String progressionWithVoid = makeProgressionWithVoid(randomProgression, index);
             Engine.question(progressionWithVoid);
             String input = sc.nextLine();
@@ -64,7 +64,7 @@ public class Progression {
         return Engine.makeRandomNum(0, progression.length - 1);
     }
 
-    public static String makeResult(String[] progression, int index) {
+    public static String returnResult(String[] progression, int index) {
         // returning chosen random number for the right answer
         return progression[index];
     }
