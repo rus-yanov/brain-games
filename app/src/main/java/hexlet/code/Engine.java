@@ -1,44 +1,36 @@
 package hexlet.code;
 
-import java.util.Random;
+import java.util.Scanner;
 
 public class Engine {
+    public static final int ROUNDS_COUNT = 3;
 
-    // printing description
-    public static void printDescription(String description) {
+    public static void run(String description, String[][] roundsData) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to the Brain Games!");
+        System.out.print("May I have your name? ");
+        String userName = sc.next();
+        System.out.println("Hello, " + userName + "!");
+
         System.out.println(description);
-    }
 
-    // asking question and giving answer String
-    public static void question(String task) {
-        System.out.println("Question: " + task);
-        System.out.print("Your answer: ");
-    }
+        for (var row : roundsData) {
+            String result = row[0];
+            String question = row[1];
+            System.out.println("Question: " + question);
+            System.out.print("Your answer: ");
+            String input = sc.next();
 
-    // in case giving answer is correct
-    public static void correct() {
-        System.out.println("Correct!");
-    }
-
-    // in case giving answer is wrong
-    public static void endGame(String wrongAns, String correctAnswer, String name) {
-        System.out.println("'" + wrongAns + "'" + " is wrong answer ;(. Correct answer was '" + correctAnswer + "'.");
-        System.out.println("Let's try again, " + name + "!");
-    }
-
-    // in case all 3 giving answers were correct
-    public static void congrats(int counter, int maxAttempt, String name) {
-        if (counter == maxAttempt) {
-            System.out.println("Congratulations, " + name + "!");
+            if (input.equals(result)) {
+                System.out.println("Correct!");
+            } else {
+                System.out.println("'" + input + "'" + " is wrong answer ;(. Correct answer was '" + result + "'.");
+                System.out.println("Let's try again, " + userName + "!");
+                return;
+            }
         }
-    }
 
-    // getting random int
-    public static int makeRandomNum(int min, int max) {
-        int diff = max - min;
-        Random rand = new Random();
-        int randomNum = rand.nextInt(diff + 1);
-        randomNum += min;
-        return randomNum;
+        System.out.println("Congratulations, " + userName + "!");
+        sc.close();
     }
 }

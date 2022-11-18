@@ -25,11 +25,11 @@ public class App {
         switch (input) {
             case 0 -> System.out.println("Exit");
             case 1 -> Cli.greet();
-            case 2 -> Even.game();
-            case 3 -> Calc.game();
-            case 4 -> GCD.game();
-            case 5 -> Progression.game();
-            case 6 -> Prime.game();
+            case 2 -> Even.runGame();
+            case 3 -> Calc.runGame();
+            case 4 -> GCD.runGame();
+            case 5 -> Progression.runGame();
+            case 6 -> Prime.runGame();
             default -> System.out.println("Something wrong");
         }
         sc.close();

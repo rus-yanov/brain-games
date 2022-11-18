@@ -1,12 +1,10 @@
 package hexlet.code.game;
 
-import hexlet.code.Cli;
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
-import java.util.Scanner;
 
 public class Calc {
-    private static final String NAME_INPUT = Cli.greet();
     private static final int MIN = 0;
     private static final int MAX = 100;
     private static final int MULTIPLY_INDEX = 1;
@@ -15,33 +13,28 @@ public class Calc {
     private static final String DESCRIPTION =
             "Whats is the result of the expression?";
 
-    public static void game() {
-        Engine.printDescription(DESCRIPTION);
-        Scanner sc = new Scanner(System.in);
-        int maxAttempt = 3;
-        int counter = 0;
-        while (counter < maxAttempt) {
-            int num1 = Engine.makeRandomNum(MIN, MAX);
-            int num2 = Engine.makeRandomNum(MIN, MAX);
-            String operand = returnArithmeticOperand();
-            String result = returnResult(num1, num2, operand);
-            Engine.question(num1 + " " + operand + " " + num2);
-            String input = sc.nextLine();
+    public static void runGame() {
+        String[][] roundsData = new String[Engine.ROUNDS_COUNT][2];
 
-            if (input.equals(result)) {
-                Engine.correct();
-                counter++;
-            } else {
-                Engine.endGame(input, result, NAME_INPUT);
-                return;
-            }
+        for (int i = 0; i < Engine.ROUNDS_COUNT; i += 1) {
+            roundsData[i] = generateRoundData();
         }
-        Engine.congrats(counter, maxAttempt, NAME_INPUT);
-        sc.close();
+
+        Engine.run(DESCRIPTION, roundsData);
+    }
+
+    private static String[] generateRoundData() {
+        int num1 = Utils.makeRandomNum(MIN, MAX);
+        int num2 = Utils.makeRandomNum(MIN, MAX);
+        String operand = returnArithmeticOperand();
+        String result = returnResult(num1, num2, operand);
+        String question = String.join(" ", Integer.toString(num1), operand, Integer.toString(num2));
+
+        return new String[]{result, question};
     }
 
     public static String returnArithmeticOperand() {
-        int index = Engine.makeRandomNum(MULTIPLY_INDEX, DIFF_INDEX);
+        int index = Utils.makeRandomNum(MULTIPLY_INDEX, DIFF_INDEX);
         return switch (index) {
             case MULTIPLY_INDEX -> "*";
             case SUM_INDEX -> "+";

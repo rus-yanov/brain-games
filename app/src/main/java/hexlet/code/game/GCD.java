@@ -1,39 +1,31 @@
 package hexlet.code.game;
 
-import hexlet.code.Cli;
+import hexlet.code.Utils;
 import hexlet.code.Engine;
 
-import java.util.Scanner;
-
 public class GCD {
-    private static final String NAME_INPUT = Cli.greet();
     private static final int MIN = 0;
     private static final int MAX = 100;
     private static final String DESCRIPTION =
             "Find the greatest common divisor of given numbers.";
 
-    public static void game() {
-        Engine.printDescription(DESCRIPTION);
-        Scanner sc = new Scanner(System.in);
-        int maxAttempt = 3;
-        int counter = 0;
-        while (counter < maxAttempt) {
-            int num1 = Engine.makeRandomNum(MIN, MAX);
-            int num2 = Engine.makeRandomNum(MIN, MAX);
-            String result = Integer.toString(gcd(num1, num2));
-            Engine.question(num1 + " " + num2);
-            String input = sc.nextLine();
+    public static void runGame() {
+        String[][] roundsData = new String[Engine.ROUNDS_COUNT][2];
 
-            if (input.equals(result)) {
-                Engine.correct();
-                counter++;
-            } else {
-                Engine.endGame(input, result, NAME_INPUT);
-                return;
-            }
+        for (int i = 0; i < Engine.ROUNDS_COUNT; i += 1) {
+            roundsData[i] = generateRoundData();
         }
-        Engine.congrats(counter, maxAttempt, NAME_INPUT);
-        sc.close();
+
+        Engine.run(DESCRIPTION, roundsData);
+    }
+
+    private static String[] generateRoundData() {
+        int num1 = Utils.makeRandomNum(MIN, MAX);
+        int num2 = Utils.makeRandomNum(MIN, MAX);
+        String result = Integer.toString(gcd(num1, num2));
+        String question = num1 + " " + num2;
+
+        return new String[]{result, question};
     }
 
     // implementing Euclid's algorithm to get GCD

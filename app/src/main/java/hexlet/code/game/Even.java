@@ -1,38 +1,30 @@
 package hexlet.code.game;
 
-import hexlet.code.Cli;
 import hexlet.code.Engine;
-
-import java.util.Scanner;
+import hexlet.code.Utils;
 
 public class Even {
-    private static final String NAME_INPUT = Cli.greet();
     private static final int MIN = 0;
     private static final int MAX = 10000;
     private static final String DESCRIPTION =
             "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
-    public static void game() {
-        Engine.printDescription(DESCRIPTION);
-        Scanner sc = new Scanner(System.in);
-        int maxAttempt = 3;
-        int counter = 0;
-        while (counter < maxAttempt) {
-            int num = Engine.makeRandomNum(MIN, MAX);
-            String result = isEven(num) ? "yes" : "no";
-            Engine.question(num + "");
-            String input = sc.nextLine();
+    public static void runGame() {
+        String[][] roundsData = new String[Engine.ROUNDS_COUNT][2];
 
-            if (input.equals(result)) {
-                Engine.correct();
-                counter++;
-            } else {
-                Engine.endGame(input, result, NAME_INPUT);
-                return;
-            }
+        for (int i = 0; i < Engine.ROUNDS_COUNT; i += 1) {
+            roundsData[i] = generateRoundData();
         }
-        Engine.congrats(counter, maxAttempt, NAME_INPUT);
-        sc.close();
+
+        Engine.run(DESCRIPTION, roundsData);
+    }
+
+    private static String[] generateRoundData() {
+        int num = Utils.makeRandomNum(MIN, MAX);
+        String result = isEven(num) ? "yes" : "no";
+        String question = Integer.toString(num);
+
+        return new String[]{result, question};
     }
 
     public static boolean isEven(int num) {
