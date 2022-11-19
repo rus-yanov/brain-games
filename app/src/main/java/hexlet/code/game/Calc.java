@@ -11,7 +11,7 @@ public class Calc {
     private static final int SUM_INDEX = 2;
     private static final int DIFF_INDEX = 3;
     private static final String DESCRIPTION =
-            "Whats is the result of the expression?";
+            "What is the result of the expression?";
 
     public static void runGame() {
         String[][] roundsData = new String[Engine.ROUNDS_COUNT][2];
