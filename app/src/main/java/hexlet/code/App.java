@@ -22,14 +22,22 @@ public class App {
         System.out.print("Your choice: ");
         int input = sc.nextInt();
 
+        final int exit = 0;
+        final int greet = 1;
+        final int even = 2;
+        final int calc = 3;
+        final int gcd = 4;
+        final int progression = 5;
+        final int prime = 6;
+
         switch (input) {
-            case 0 -> System.out.println("Exit");
-            case 1 -> Cli.greet();
-            case 2 -> Even.runGame();
-            case 3 -> Calc.runGame();
-            case 4 -> GCD.runGame();
-            case 5 -> Progression.runGame();
-            case 6 -> Prime.runGame();
+            case exit -> System.out.println("Exit");
+            case greet -> Cli.greet();
+            case even -> Even.runGame();
+            case calc -> Calc.runGame();
+            case gcd -> GCD.runGame();
+            case progression -> Progression.runGame();
+            case prime -> Prime.runGame();
             default -> System.out.println("Something wrong");
         }
         sc.close();
