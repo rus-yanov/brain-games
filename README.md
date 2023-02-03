@@ -1,3 +1,6 @@
+<h1><b> Brain games! </b></h1>
+<p> A set of five console math games. The engine is implemented separately, which allows to supplement the project with new games.</p>
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/rus-yanov/java-project-61/workflows/hexlet-check/badge.svg)](https://github.com/rus-yanov/java-project-61/actions)
 
