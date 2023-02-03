@@ -6,22 +6,11 @@
 
 <a href="https://codeclimate.com/github/rus-yanov/java-project-60/maintainability"><img src="https://api.codeclimate.com/v1/badges/95967b6176eb38dcf361/maintainability" /></a>
 
-### Asciinema
-
-Greet/exit:
-https://asciinema.org/a/536873
-
-Even: 
-https://asciinema.org/a/536875
-
-Calc:
-https://asciinema.org/a/536876
-
-GSD:
-https://asciinema.org/a/5noWfUTIjYvDYJygS1d7A7PjJ
-
-Progression:
-https://asciinema.org/a/kbJteF9WFMXRwK7OmNso2r7iJ
-
-Prime:
-https://asciinema.org/a/ifMEH18okLhBHYXN0ihVtU443
+<h3><b> Use cases:</b></h3> 
+<ul>
+  <li> <a href="https://asciinema.org/a/536873">Greet/exit</a> </li>
+  <li> <a href="https://asciinema.org/a/536875">Even</a> </li>
+  <li> <a href="https://asciinema.org/a/536876">Calc</a> </li>
+  <li> <a href="https://asciinema.org/a/5noWfUTIjYvDYJygS1d7A7PjJ">GSD</a> </li>
+  <li> <a href="https://asciinema.org/a/kbJteF9WFMXRwK7OmNso2r7iJ">Progression</a> </li>
+  <li> <a href="https://asciinema.org/a/ifMEH18okLhBHYXN0ihVtU443">Prime</a> </li>
